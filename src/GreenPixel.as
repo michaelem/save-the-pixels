@@ -1,5 +1,7 @@
 package
 {
+	import org.flixel.*;
+	
 	public class GreenPixel extends Pixel
 	{
 		public function GreenPixel(x:uint, y:uint, l:Level)
@@ -11,12 +13,15 @@ package
 		
 		override public function getColor():String 
 		{
-			return 'g';
+			return 'green';
 		}
 		
 		override public function canSurvive():Boolean
 		{
-			return false;
+			var pt:FlxPoint = this.level.clippBounds(this.xLoc+1, this.yLoc);
+			var foo:String = this.level.getColorAt(pt.x, pt.y);
+			return this.level.getColorAt(pt.x, pt.y) == 'green';
+			
 		}
 	}
 }
