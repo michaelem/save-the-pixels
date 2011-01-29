@@ -16,7 +16,7 @@ package
 		protected var yLoc:uint;
 		protected var color:uint;
 		
-		public function Pixel(x:uint, y:uint)
+		public function Pixel(x:uint, y:uint, l:Level)
 		{
 			this.xLoc = x;
 			this.yLoc = y;
@@ -37,5 +37,12 @@ package
 		{
 			return this.sprite;
 		}
+		
+		public function isDying():Boolean
+		//this should implement the rules for the pixel to live or die. (in the subclasses.)
+		{
+			return false;
+		}
+		
 	}
 }

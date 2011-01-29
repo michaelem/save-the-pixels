@@ -8,5 +8,10 @@ package
 			this.color = 0xff00ff00;
 			this.sprite = this.createSprite();
 		}
+		
+		override public function isDying():Boolean
+		{
+			
+		}
 	}
 }
