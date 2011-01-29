@@ -2,7 +2,7 @@
 <actionScriptProperties analytics="false" mainApplicationPath="Main.as" projectUUID="1c5e127c-b4aa-4023-b223-8e36b00c4b0e" version="6">
   <compiler additionalCompilerArguments="-locale en_US" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="true" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
     <compilerSourcePath>
-      <compilerSourcePathEntry kind="1" linkType="1" path="/Users/emi/Development/AdamAtomic-flixel-b9fe564"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="flixel"/>
     </compilerSourcePath>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">
