@@ -44,5 +44,10 @@ package
 			return false;
 		}
 		
+		public function update():void
+		{
+			
+		}
+		
 	}
 }

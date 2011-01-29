@@ -26,7 +26,12 @@ package
 		}
 		
 		public function update():void {
-			
+			for (var i:uint = 0; i < 8; i++){
+				this.pixelField[i] = new Array();
+				for (var j:uint = 0; j < 8; j++){
+					this.pixelField[i][j].update();
+				}
+			}
 		}
 	}
 }

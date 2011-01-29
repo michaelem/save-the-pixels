@@ -4,10 +4,11 @@ package
 	 
 	public class PlayState extends FlxState
 	{
+		private var level:Level;
 		override public function create():void
 		{	
-			var l1:Level = new Level(new Array());
-			var spr:Array = l1.getSprites();
+			this.level = new Level(new Array());
+			var spr:Array = this.level.getSprites();
 			for (var i:uint; i<spr.length; i++) {
 				add(spr[i]);
 			}
@@ -20,6 +21,11 @@ package
 				thaSprite.createGraphic((48), (48), 0xffffffff);
 				add(thaSprite);
 			}
+		}
+	
+		override public function update():void
+		{
+			this.level.update()
 		}
 	}
 }
