@@ -60,5 +60,15 @@ package
 				}
 			}
 		}
+		
+		public function getColorAt(x:uint, y:uint):String
+		{
+			if (x < this.pixelField.length()) {
+				if (y < this.pixelField[x].lenght()) {
+					return pixelField[x][y].getColor();
+				}
+			}
+			return null;
+		}
 	}
 }

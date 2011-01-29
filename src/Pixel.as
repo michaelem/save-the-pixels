@@ -27,6 +27,11 @@ package
 			this.fadeTimer = 0;
 		}
 		
+		public function getColor():String 
+		{
+			return 'w';
+		}
+		
 		protected function createSprite():FlxSprite
 		{
 			var xPos:int = this.xLoc*(xRes)+xOffset+xOffset*this.xLoc;
@@ -35,6 +40,7 @@ package
 			thaSprite.createGraphic((xRes), (yRes), this.color);
 			return thaSprite;
 		}
+		
 		
 		public function getSprite():FlxSprite
 		{
@@ -68,6 +74,7 @@ package
 		public function canSurvive():Boolean {
 			return true;
 		}
+		
 		
 	}
 }

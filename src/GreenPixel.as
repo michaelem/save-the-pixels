@@ -9,6 +9,11 @@ package
 			this.sprite = this.createSprite();
 		}
 		
+		override public function getColor():String 
+		{
+			return 'g';
+		}
+		
 		override public function canSurvive():Boolean
 		{
 			return false;
