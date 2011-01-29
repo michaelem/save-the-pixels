@@ -15,6 +15,8 @@ package
 		protected var xLoc:uint;
 		protected var yLoc:uint;
 		protected var color:uint;
+		private var fadeTimer:Number;
+		private var isDying:Boolean;
 		
 		public function Pixel(x:uint, y:uint, l:Level)
 		{
@@ -22,6 +24,7 @@ package
 			this.yLoc = y;
 			this.color = 0xffffffff;
 			this.sprite = this.createSprite();
+			this.fadeTimer = 0;
 		}
 		
 		protected function createSprite():FlxSprite
@@ -38,15 +41,32 @@ package
 			return this.sprite;
 		}
 		
-		public function isDying():Boolean
-		//this should implement the rules for the pixel to live or die. (in the subclasses.)
+		public function getIsDying():Boolean
 		{
-			return false;
+			return this.isDying;
 		}
 		
 		public function update():void
 		{
+			this.fadeTimer = this.fadeTimer + FlxG.elapsed;
+			if (this.fadeTimer >= 0.05) {
+				this.fadeTimer = 0;
+				if (this.isDying) {
+					if (this.sprite.color > 0x00000000) {
+						this.sprite.color = this.sprite.color - 0x01010101;
+					}
+				}
+				
+			}
 			
+		}
+		
+		public function advanceRound():void {
+			this.isDying = !this.canSurvive();
+		}
+		
+		public function canSurvive():Boolean {
+			return true;
 		}
 		
 	}

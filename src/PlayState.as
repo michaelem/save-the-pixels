@@ -1,13 +1,24 @@
 package
 {
 	import org.flixel.*;
-	 
 	public class PlayState extends FlxState
 	{
 		private var level:Level;
+		private var l0:Array;
 		override public function create():void
 		{	
-			this.level = new Level(new Array());
+			l0 = new Array();
+			l0[0] = 'wwwwwwww';
+			l0[1] = 'gggggggg';
+			l0[2] = 'wgwgwgwg';
+			l0[3] = 'gwgwgwgw';
+			l0[4] = 'gggwwwgg';
+			l0[5] = 'wwggwwgg';
+			l0[6] = 'ggwwggww';
+			l0[7] = 'wwwwgggg';
+			
+			
+			this.level = new Level(l0, 30);
 			var spr:Array = this.level.getSprites();
 			for (var i:uint; i<spr.length; i++) {
 				add(spr[i]);
@@ -25,7 +36,7 @@ package
 	
 		override public function update():void
 		{
-			this.level.update()
+			this.level.update();
 		}
 	}
 }
