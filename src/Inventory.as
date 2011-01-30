@@ -33,7 +33,7 @@ package
 		}
 		
 		public function getPixelAtPoint(point:FlxPoint):String {
-			if (point.y > offset.y) {
+			if (point.y > offset.y && point.y <= offset.y + yRes) {
 				for (var k:uint = 0; k< this.colors.length; k++){
 					var xPos:int = xRes * k + offset.x * k + offset.x;
 					if (point.x >= xPos && point.x <= xPos + xRes){
@@ -45,7 +45,7 @@ package
 		}
 		
 		public function getInvNumberAtPoint(point:FlxPoint):uint {
-			if (point.y > offset.y) {
+			if (point.y >= offset.y && point.y <= offset.y + yRes) {
 				for (var k:uint = 0; k< this.colors.length; k++){
 					var xPos:int = xRes * k + offset.x * k + offset.x;
 					if (point.x >= xPos && point.x <= xPos + xRes){
@@ -70,6 +70,7 @@ package
 			} else if (this.colors[pos] == "green") {
 				thaSprite.createGraphic((48), (48), 0xff00ff00);
 			}
+			this.sprites[pos] = thaSprite;
 		}
 	}
 }

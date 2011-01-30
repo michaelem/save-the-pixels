@@ -13,6 +13,7 @@ package
 		private var inventory:Inventory;
 		private var hoverColor:String;
 		private var hoverInvNr:uint;
+		private var clickTimer:Number;
 		override public function create():void
 		{	
 			this.hoverColor = "none";
@@ -56,7 +57,7 @@ package
 			flash.ui.Mouse.show();
 			this.aliveCount.text = "alive: " + this.level.getAliveCount();
 			this.level.update();
-			if (FlxG.mouse.pressed()) {
+			if (FlxG.mouse.justPressed()) {
 				if (this.hoverColor != "none") {
 					var pxl:Pixel = level.getPixelAtPoint(new FlxPoint(FlxG.mouse.x, FlxG.mouse.y));
 					if (pxl != null) {
