@@ -3,14 +3,19 @@ package
 	import flash.ui.Mouse;
 	
 	import org.flixel.*;
+	import org.flixel.data.FlxAnim;
+
 	public class PlayState extends FlxState
 	{
 		private var level:Level;
 		private var l0:Array;
 		private var aliveCount:FlxText;
+		private var inventory:Inventory;
+		private var hoverColor:String;
+		private var hoverInvNr:uint;
 		override public function create():void
 		{	
-			
+			this.hoverColor = "none";
 			
 			l0 = new Array();
 			l0[0] = 'wwwwwwww';
@@ -31,13 +36,19 @@ package
 			}
 			add(this.aliveCount);
 			
-			var yourPixels:Array = new Array();
-			for (var k:uint = 0; k < 6; k++) {
-				var xPos:int = 48 * k + 10 * k +10;
-				var thaSprite:FlxSprite = new FlxSprite(xPos, 494);
-				thaSprite.createGraphic((48), (48), 0xffffffff);
-				add(thaSprite);
+			var availableColors:Array = new Array();
+			availableColors.push("green");
+			availableColors.push("green");
+			availableColors.push("green");
+			availableColors.push("green");
+			availableColors.push("green");
+			this.inventory = new Inventory(availableColors);
+			
+
+			for each (var sprt:FlxSprite in this.inventory.getSprites()) {
+				add(sprt);
 			}
+
 		}
 	
 		override public function update():void
@@ -46,12 +57,35 @@ package
 			this.aliveCount.text = "alive: " + this.level.getAliveCount();
 			this.level.update();
 			if (FlxG.mouse.pressed()) {
-				var pxl:Pixel = level.getPixelAtPoint(new FlxPoint(FlxG.mouse.x, FlxG.mouse.y));
-				var nuPxl:Pixel = new GreenPixel(pxl.getLocation().x, pxl.getLocation().y, this.level);
-				level.setPixelAtLocation(pxl.getLocation(), nuPxl);
-				add(nuPxl.getSprite());
+				if (this.hoverColor != "none") {
+					var pxl:Pixel = level.getPixelAtPoint(new FlxPoint(FlxG.mouse.x, FlxG.mouse.y));
+					if (pxl != null) {
+						var nuPxl:Pixel = new GreenPixel(pxl.getLocation().x, pxl.getLocation().y, this.level);
+						level.setPixelAtLocation(pxl.getLocation(), nuPxl);
+						add(nuPxl.getSprite());
+						this.inventory.removeColorAt(this.hoverInvNr);
+						this.hoverColor = "none";
+					} else {
+						this.inventory.addColorAt(this.hoverInvNr, this.hoverColor);
+						this.hoverColor = "none";
+						this.hoverInvNr = null;
+						for each (var sprt:FlxSprite in this.inventory.getSprites()) {
+							add(sprt);
+						}
+					}
+				}
+				var invColor:String = this.inventory.getPixelAtPoint(new FlxPoint(FlxG.mouse.x, FlxG.mouse.y))
+				if (invColor != null) {
+					this.hoverColor = invColor;
+					this.hoverInvNr = this.inventory.getInvNumberAtPoint(new FlxPoint(FlxG.mouse.x, FlxG.mouse.y));
+					this.inventory.removeColorAt(this.hoverInvNr);
+				}
+				
+				
+				
 				
 			}
+			super.update();
 		}
 	}
 }

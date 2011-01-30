@@ -92,6 +92,7 @@ package
 		}
 		
 		public function setPixelAtLocation(loc:FlxPoint, pix:Pixel):void {
+			//this.pixelField[loc.x][loc.y]
 			this.pixelField[loc.x][loc.y] = pix;
 		}
 		
